@@ -14,24 +14,10 @@ export default function Settings() {
 
   return (
     <div
-      className={`min-h-screen flex flex-col items-center ${
-        darkMode
-          ? "bg-gradient-to-b from-[#060b17] to-[#0b1220] text-gray-100"
-          : "bg-gray-50 text-gray-900"
-      } font-inter transition-colors duration-300`}
+      className="min-h-screen flex flex-col items-center bg-gradient-to-b from-[#060b17] to-[#0b1220] text-gray-100 font-inter transition-colors duration-300"
     >
-      {/* Page Header */}
-      <header className="w-full border-b border-white/10 bg-white/5 py-6 mb-10">
-        <h1 className="text-center text-2xl md:text-2xl font-bold tracking-tight">
-          Settings
-        </h1>
-        <p className="text-center text-sm text-gray-400">
-          Manage your profile, privacy, and preferences
-        </p>
-      </header>
-
-      {/* Settings Container */}
-      <main className="w-full max-w-3xl px-6 pb-16 flex flex-col gap-8">
+      {/* ⚙️ Settings Container */}
+      <main className="w-full max-w-3xl px-6 pb-16 flex flex-col gap-8 mt-4">
         {/* Profile Section */}
         <section className="bg-[#0b1220]/90 border border-white/10 rounded-2xl p-6 shadow-lg backdrop-blur-sm">
           <h2 className="text-lg font-semibold border-b border-white/10 pb-3 mb-5">
@@ -39,38 +25,23 @@ export default function Settings() {
           </h2>
 
           <div className="flex flex-col gap-5">
-            <div>
-              <label className="text-sm font-medium mb-1 block">Username</label>
-              <input
-                type="text"
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                className="w-full rounded-lg px-3 py-2 bg-white/5 border border-white/10 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-medium mb-1 block">Email</label>
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="w-full rounded-lg px-3 py-2 bg-white/5 border border-white/10 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              />
-            </div>
-
-            <div>
-              <label className="text-sm font-medium mb-1 block">Language</label>
-              <select
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-                className="w-full rounded-lg px-3 py-2 bg-white/5 border border-white/10 focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              >
-                <option>English</option>
-                <option>Filipino</option>
-                <option>Spanish</option>
-              </select>
-            </div>
+            <InputField
+              label="Username"
+              value={username}
+              onChange={setUsername}
+            />
+            <InputField
+              label="Email"
+              type="email"
+              value={email}
+              onChange={setEmail}
+            />
+            <SelectField
+              label="Language"
+              value={language}
+              onChange={setLanguage}
+              options={["English", "Filipino", "Spanish"]}
+            />
           </div>
         </section>
 
@@ -135,6 +106,39 @@ function ToggleRow({ label, checked, onChange }) {
         />
         <div className="w-11 h-6 bg-gray-600 rounded-full peer peer-checked:bg-blue-500 after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:after:translate-x-full" />
       </label>
+    </div>
+  );
+}
+
+/* ✅ Reusable Input Field */
+function InputField({ label, type = "text", value, onChange }) {
+  return (
+    <div>
+      <label className="text-sm font-medium mb-1 block">{label}</label>
+      <input
+        type={type}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-lg px-3 py-2 bg-white/5 border border-white/10 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+      />
+    </div>
+  );
+}
+
+/* ✅ Reusable Select Field */
+function SelectField({ label, value, onChange, options }) {
+  return (
+    <div>
+      <label className="text-sm font-medium mb-1 block">{label}</label>
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        className="w-full rounded-lg px-3 py-2 bg-white/5 border border-white/10 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+      >
+        {options.map((opt) => (
+          <option key={opt}>{opt}</option>
+        ))}
+      </select>
     </div>
   );
 }
