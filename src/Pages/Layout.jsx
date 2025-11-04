@@ -29,7 +29,7 @@ export default function Layout() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#071023] to-[#07111a] text-[#e6eef8] font-['Inter'] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-b from-[#071023] to-[#07111a] text-[#e6eef8] flex flex-col">
       {/* 🔝 TOPBAR COMPONENT */}
       <Topbar query={query} setQuery={setQuery} handleSearch={handleSearch} />
 

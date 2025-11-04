@@ -14,7 +14,7 @@ export default function Settings() {
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center bg-gradient-to-b from-[#060b17] to-[#0b1220] text-gray-100 font-inter transition-colors duration-300"
+      className="min-h-screen flex flex-col items-center  text-gray-100 font-inter transition-colors duration-300"
     >
       {/* ⚙️ Settings Container */}
       <main className="w-full max-w-3xl px-6 pb-16 flex flex-col gap-8 mt-4">

@@ -34,7 +34,7 @@ export default function MyNetwork() {
   const message = (id) => alert("Open chat with " + id);
 
   return (
-    <div className="flex-1 bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8] font-[Inter] p-7">
+    <div className="flex-1 bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8]  p-4">
       <div className="max-w-[1100px] mx-auto grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-5">
 
         {/* LEFT PANEL */}

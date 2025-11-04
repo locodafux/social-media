@@ -15,7 +15,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#060f20] to-[#091427] font-[Inter] text-[#e6eef8]">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#060f20] to-[#091427] text-[#e6eef8]">
       <div className="bg-[#0b1220] border border-white/5 shadow-[0_4px_40px_rgba(0,0,0,0.4)] rounded-2xl p-10 w-full max-w-md flex flex-col gap-5">
         <h1 className="text-center text-3xl font-bold mb-2">Welcome Back</h1>
         <p className="text-center text-sm text-[#98a0b3] mb-4">

@@ -58,7 +58,7 @@ export default function Messages() {
   );
 
   return (
-    <div className="flex bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8] font-[Inter] h-[calc(100vh-64px)] overflow-hidden">
+    <div className="flex bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8] h-[calc(100vh-64px)] overflow-hidden p-4">
       {/* 🧭 Sidebar */}
       <aside className="w-[300px] bg-[#0b1220]/90 border-r border-white/10 flex flex-col">
         <div className="p-4 border-b border-white/10 font-semibold text-lg">Messages</div>

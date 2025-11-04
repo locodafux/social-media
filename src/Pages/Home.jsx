@@ -52,7 +52,7 @@ export default function Home() {
   };
 
   return (
-    <div className="flex flex-col gap-4 max-w-5xl m-auto">
+    <div className="flex flex-col gap-4 max-w-5xl m-auto p-4">
       {/* ✏️ CREATE POST */}
       <form
         onSubmit={handleCreatePost}
