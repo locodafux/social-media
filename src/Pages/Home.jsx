@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -18,16 +19,16 @@ export default function Home() {
           <nav>
             <ul className="space-y-1 mt-2">
               {[
-                { name: "Home", active: true, href: "#" },
-                { name: "My Network", href: "./network-page.html" },
-                { name: "Messages", href: "./messages.html" },
-                { name: "Notifications", href: "./notification.html" },
-                { name: "Jobs", href: "./jobs.html" },
-                { name: "Settings", href: "./settings.html" },
+                { name: "Home", active: true, location: "#" },
+                { name: "My Network", location: "/networks" },
+                { name: "Messages", location: "./messages" },
+                { name: "Notifications", location: "./notifications" },
+                { name: "Jobs", location: "./jobs" },
+                { name: "Settings", location: "./settings" },
               ].map((item) => (
                 <li key={item.name}>
-                  <a
-                    href={item.href}
+                  <Link
+                    to={item.location}
                     className={`flex items-center gap-3 px-3 py-2 rounded-lg no-underline ${
                       item.active
                         ? "bg-gradient-to-r from-blue-500/10 to-purple-500/10 text-blue-400 font-semibold"
@@ -35,7 +36,7 @@ export default function Home() {
                     }`}
                   >
                     {item.name}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
