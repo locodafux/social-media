@@ -4,27 +4,35 @@ import { Link } from "react-router-dom";
 
 export default function Register() {
   const [form, setForm] = useState({
-    fullname: "",
+    name: "",
     email: "",
     password: "",
-    confirmPassword: "",
+    password_confirmation: "",
   });
+
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.id]: e.target.value });
   };
 
-  const registerUser = (e) => {
-    e.preventDefault();
-    const { fullname, password, confirmPassword } = form;
+   async function registerUser(e) {
+        e.preventDefault();
+        const res = await fetch('/api/register', {
+            method: 'post',
+            body: JSON.stringify(form),
+        });
 
-    if (password !== confirmPassword) {
-      alert("Passwords do not match. Please try again.");
-      return;
+        const data = await res.json();
+        
+        if (data.errors) {
+            setErrors(data.errors)
+        } else {
+            localStorage.setItem('token', data.token);
+            setToken(data.token);
+            navigate("/");
+        }
     }
-
-    alert(`Welcome, ${fullname}! Your account has been created successfully.`);
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-[#060f20] to-[#091427]">
@@ -39,16 +47,16 @@ export default function Register() {
         <form onSubmit={registerUser} className="flex flex-col gap-4">
           <div>
             <label
-              htmlFor="fullname"
+              htmlFor="name"
               className="block mb-2 text-sm font-semibold text-white"
             >
               Full Name
             </label>
             <input
               type="text"
-              id="fullname"
+              id="name"
               placeholder="Enter your full name"
-              value={form.fullname}
+              value={form.name}
               onChange={handleChange}
               required
               className="w-full p-3 rounded-lg bg-transparent border border-white/10 text-white text-sm focus:border-blue-500 outline-none transition"
@@ -93,16 +101,16 @@ export default function Register() {
 
           <div>
             <label
-              htmlFor="confirmPassword"
+              htmlFor="password_confirmation"
               className="block mb-2 text-sm font-semibold text-white"
             >
               Confirm Password
             </label>
             <input
               type="password"
-              id="confirmPassword"
+              id="password_confirmation"
               placeholder="Re-enter your password"
-              value={form.confirmPassword}
+              value={form.password_confirmation}
               onChange={handleChange}
               required
               className="w-full p-3 rounded-lg bg-transparent border border-white/10 text-white text-sm focus:border-blue-500 outline-none transition"
