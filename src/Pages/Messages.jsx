@@ -39,7 +39,6 @@ export default function Messages() {
   const [message, setMessage] = useState("");
 
   const activeConv = conversations.find((c) => c.id === activeId);
-
   const openChat = (id) => setActiveId(id);
 
   const sendMessage = () => {
@@ -59,12 +58,12 @@ export default function Messages() {
   );
 
   return (
-    <div className="h-screen flex bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8] font-[Inter]">
-
-      {/* Sidebar */}
-      <aside className="w-[300px] bg-[#0b1220]/90 border-r border-white/10 flex flex-col max-md:w-full max-md:h-[200px] max-md:flex-row max-md:overflow-x-auto">
+    <div className="flex bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8] font-[Inter] h-[calc(100vh-64px)] overflow-hidden">
+      {/* 🧭 Sidebar */}
+      <aside className="w-[300px] bg-[#0b1220]/90 border-r border-white/10 flex flex-col">
         <div className="p-4 border-b border-white/10 font-semibold text-lg">Messages</div>
-        <div className="p-3 w-full max-md:min-w-[180px]">
+
+        <div className="p-3">
           <input
             type="text"
             placeholder="Search"
@@ -81,12 +80,12 @@ export default function Messages() {
               onClick={() => openChat(c.id)}
               className={`flex items-center gap-3 px-4 py-3 border-b border-white/5 cursor-pointer transition ${
                 c.id === activeId ? "bg-blue-500/10" : "hover:bg-white/5"
-              } max-md:flex-col max-md:py-4 max-md:min-w-[160px]`}
+              }`}
             >
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-400 to-blue-400 flex items-center justify-center font-bold">
                 {c.initials}
               </div>
-              <div className="flex-1 max-md:text-center">
+              <div className="flex-1">
                 <div className="font-semibold">{c.name}</div>
                 <div className="text-sm text-gray-400 truncate">{c.last}</div>
               </div>
@@ -95,9 +94,10 @@ export default function Messages() {
         </div>
       </aside>
 
-      {/* Chat Section */}
-      <section className="flex-1 flex flex-col relative max-md:h-[calc(100vh-200px)]">
-        <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10 bg-white/5">
+      {/* 💬 Chat Section */}
+      <section className="flex-1 flex flex-col overflow-hidden">
+        {/* Header */}
+        <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10 bg-white/5 flex-shrink-0">
           {activeConv ? (
             <>
               <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-teal-400 to-blue-400 flex items-center justify-center font-bold">
@@ -110,7 +110,8 @@ export default function Messages() {
           )}
         </div>
 
-        <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-3">
+        {/* Messages */}
+        <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-3">
           {activeConv &&
             activeConv.messages.map((m, i) => (
               <div
@@ -129,7 +130,8 @@ export default function Messages() {
             ))}
         </div>
 
-        <div className="flex items-center gap-3 p-3 border-t border-white/10 bg-white/5">
+        {/* Input */}
+        <div className="flex items-center gap-3 p-3 border-t border-white/10 bg-white/5 flex-shrink-0">
           <input
             type="text"
             placeholder="Type a message..."

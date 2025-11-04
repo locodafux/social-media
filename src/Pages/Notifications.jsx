@@ -27,7 +27,7 @@ export default function Notifications() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8] font-[Inter]">
+    <div className="flex-1 flex flex-col items-center bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8] font-[Inter]">
       {/* Header */}
       <header className="w-full text-center font-bold text-[22px] py-5 px-6 bg-white/5 border-b border-white/10">
         Notifications

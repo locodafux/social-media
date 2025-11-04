@@ -46,8 +46,8 @@ export default function Jobs() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8] font-[Inter]">
-      {/* Header */}
+    <div className="flex flex-col items-center bg-gradient-to-b from-[#061022] to-[#07111a] text-[#e6eef8] font-inter w-full">
+      {/* Page header (non-sticky, Layout will scroll) */}
       <header className="w-full text-center font-bold text-[22px] py-5 px-6 bg-white/5 border-b border-white/10">
         Job Listings
       </header>
@@ -77,7 +77,7 @@ export default function Jobs() {
       </div>
 
       {/* Job Listings */}
-      <main className="w-full max-w-4xl mt-10 flex flex-col gap-5 px-5">
+      <main className="w-full max-w-4xl mt-10 flex flex-col gap-5 px-5 pb-10">
         {filteredJobs.length === 0 ? (
           <div className="text-center text-[#98a0b3] mt-20 text-lg">
             No jobs found at the moment.

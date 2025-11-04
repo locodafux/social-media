@@ -18,14 +18,17 @@ function App() {
     <>
 <BrowserRouter>
   <Routes>
-      <Route path="/" element={<Home />} />
       <Route path="/register" element={user ? <Home /> : <Register />} />
       <Route path="/login" element={user ? <Home /> : <Login />} />
-      <Route path="/networks" element={ <MyNetwork/> } />
-      <Route path="/messages" element={ <Messages /> } />
-      <Route path="/notifications" element={ <Notifications /> } />
-      <Route path="/jobs" element={ <Jobs /> } />
-      <Route path="/settings" element={ <Settings /> } />
+  
+      <Route  path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/messages" element={<Messages />} />
+          <Route path="/notifications" element={<Notifications />} />
+          <Route path="/jobs" element={<Jobs />} />
+          <Route path="/networks" element={ <MyNetwork/> } />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
   </Routes>
 </BrowserRouter>
 

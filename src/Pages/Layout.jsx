@@ -1,40 +1,26 @@
-import { useContext } from "react";
-import { Link, Outlet, useNavigate } from "react-router-dom";
-import { AppContext } from "../Context/AppContext";
+import React, { useState } from "react";
+import { Outlet } from "react-router-dom";
+import Topbar from "./TopBar"; // ✅ import the new component
 
 export default function Layout() {
-    // const { user, token, setUser, setToken } = useContext(AppContext);
-    const user = null;
+  const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
 
-    return (
-        <>
-            <header className="bg-blue-600 text-white shadow-md sticky top-0 z-10">
-                <nav className="max-w-5xl mx-auto flex items-center justify-between px-6 py-3">
-                    <Link
-                        to="/"
-                        className="font-semibold text-lg hover:text-blue-200 transition-colors"
-                    >
-                        Home
-                    </Link>
-                    {user ? (
-                        <div className="flex gap-6">
-                        <div className="text-gray-200"> Wecome back! {user.name}</div>
-                        <button className="hover:text-blue-200" onClick={handleLogout}>Logout</button>
-                        </div>
-                    ) : (
-                        <div className="flex items-center gap-4">
-                            <Link to="/register" className="hover:text-blue-200">Register</Link>
-                            <Link to="/login" className="hover:text-blue-200">Login</Link>
-                        </div>
-                    )
-                    }
-                </nav>
-            </header>
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setTimeout(() => setLoading(false), 600);
+  };
 
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-[#071023] to-[#07111a] text-[#e6eef8] font-['Inter'] flex flex-col">
+      {/* 🔝 TOPBAR COMPONENT */}
+      <Topbar query={query} setQuery={setQuery} handleSearch={handleSearch} />
 
-            <main className="max-w-5xl mx-auto p-6">
-                <Outlet />
-            </main>
-        </>
-    );
+      {/* 🧩 PAGE CONTENT */}
+      <main className="flex-1 overflow-y-auto w-full">
+        <Outlet context={{ query, loading }} />
+      </main>
+    </div>
+  );
 }
